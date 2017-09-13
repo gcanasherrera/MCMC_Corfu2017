@@ -94,9 +94,13 @@ class MCMC(object):
         #plt.tight_layout()
         plt.show()
 
-    def covariance_lag(self, x_current):
+    def covariance_lag(self, x, lag):
         self.chain_mean=np.mean(self.chain)
-        
+        chain_difference = self.chain - self.chain_mean
+        denominator_difference=chain_difference**2
+        denominator_sum= np.sum(denominator_difference)
+        for i in range (0, self.N-lag):
+            
 
 
 
