@@ -49,6 +49,7 @@ class MCMC(object):
         self.function=[]
         self.N=chain_length
         self.chain_mean=0.0
+        self.rho_lag=0.0
 
 #    def jump_gaussian(x):
 #        return 1./(self.gaussian_std*(np.sqrt(2*np.pi))) * np.exp(-0.5*((x-self.gaussian_mean)/self.gaussian_std)**2)
@@ -100,7 +101,16 @@ class MCMC(object):
         denominator_difference=chain_difference**2
         denominator_sum= np.sum(denominator_difference)
         for i in range (0, self.N-lag):
-            
+            self.rho_lag+=chain_difference[i]*(self.chain[i+lag]-self.chain_mean)/denominator_sum
+            print self.rho_lag
+        
+        self.rho_lag=rho_lag
+        
+        return= rho_lag
+        
+        print "The final value for rho_lag={}".{rho_lag}
+
+
 
 
 
