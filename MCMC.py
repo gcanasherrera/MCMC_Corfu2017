@@ -48,6 +48,7 @@ class MCMC(object):
         self.chain=[]
         self.function=[]
         self.N=chain_length
+        self.chain_mean=0.0
 
 #    def jump_gaussian(x):
 #        return 1./(self.gaussian_std*(np.sqrt(2*np.pi))) * np.exp(-0.5*((x-self.gaussian_mean)/self.gaussian_std)**2)
@@ -92,6 +93,11 @@ class MCMC(object):
         sns.distplot(self.chain, color="m")
         #plt.tight_layout()
         plt.show()
+
+    def covariance_lag(self, x_current):
+        self.chain_mean=np.mean(self.chain)
+        
+
 
 
 
