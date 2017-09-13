@@ -91,24 +91,27 @@ class MCMC(object):
 
         #plt.hist(self.chain, bins='auto')
         #plt.plot(self.chain, self.function, '-')
-        sns.distplot(self.chain, color="m")
+        #sns.distplot(self.chain, color="m")
         #plt.tight_layout()
-        plt.show()
+        #plt.show()
 
-    def covariance_lag(self, x, lag):
+    def covariance_lag(self, lag):
+        
+        print "Starting covariance_lag"
+        
         self.chain_mean=np.mean(self.chain)
         chain_difference = self.chain - self.chain_mean
         denominator_difference=chain_difference**2
         denominator_sum= np.sum(denominator_difference)
         for i in range (0, self.N-lag):
             self.rho_lag+=chain_difference[i]*(self.chain[i+lag]-self.chain_mean)/denominator_sum
-            print self.rho_lag
+        #print self.rho_lag
         
-        self.rho_lag=rho_lag
+        rho_lag=self.rho_lag
         
-        return= rho_lag
+        return rho_lag
         
-        print "The final value for rho_lag={}".{rho_lag}
+#print "The final value for lag={} is: rho_lag={}". {lag, rho_lag}
 
 
 
