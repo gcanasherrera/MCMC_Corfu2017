@@ -84,20 +84,20 @@ class MCMC(object):
                 if generator < A:
                     x_current = x_prop
             
-            print x_current
+            #print x_current
 
             self.chain.append(x_current)
             self.function.append(self.target_distribution(x_current))
 
         #plt.hist(self.chain, bins='auto')
         #plt.plot(self.chain, self.function, '-')
-        #sns.distplot(self.chain, color="m")
+        sns.distplot(self.chain, color="m")
         #plt.tight_layout()
-        #plt.show()
+        plt.show(block=False)
 
     def covariance_lag(self, lag):
         
-        print "Starting covariance_lag"
+        #print "Starting covariance_lag"
         
         self.chain_mean=np.mean(self.chain)
         chain_difference = self.chain - self.chain_mean
